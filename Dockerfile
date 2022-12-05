@@ -1,5 +1,7 @@
 FROM python:latest
 
+USER rudghks531
+
 WORKDIR /app/
 
 COPY ./main.py /app/
