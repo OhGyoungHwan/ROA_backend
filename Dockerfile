@@ -2,7 +2,7 @@ FROM python:latest
 
 USER rudghks531
 
-WORKDIR /app/
+WORKDIR /diablo2img2option_backend/
 
 COPY ./main.py /app/
 COPY ./requirements.txt /app/
