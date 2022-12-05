@@ -10,6 +10,9 @@ WORKDIR /app
 COPY . /app
 
 RUN useradd appuser && chown -R appuser /app
+RUN apt-get update
+RUN apt-get -y install libgl1-mesa-glx
+
 USER appuser
 
 ENTRYPOINT ["uvicorn","main:app","--port","8000","--host","0.0.0.0"]
