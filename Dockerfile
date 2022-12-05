@@ -12,6 +12,7 @@ COPY . /app
 RUN useradd appuser && chown -R appuser /app
 RUN apt-get update
 RUN apt-get -y install libgl1-mesa-glx
+RUN apt-get install libglib2.0-0
 
 USER appuser
 
