@@ -5,10 +5,9 @@ import imutils
 import re
 import requests
 import numpy as np
-from imutils.perspective import four_point_transform
+import imutils.perspective 
 import pandas as pd
 import optioncompiler
-import json
 
 
 def imgfile_preprocessing(imgfile):
