@@ -52,6 +52,7 @@ app = FastAPI()
 
 origins = [
     "http://172.27.0.1:3000",
+    "http://localhost:3000",
 ]
 app.add_middleware(
     CORSMiddleware,
@@ -60,6 +61,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.get("/")
+async def onload():
+    return "load done!!!"
 
 
 @app.post("/uploadimg/")
