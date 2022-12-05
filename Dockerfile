@@ -1,11 +1,12 @@
 FROM python:latest
-RUN adduser --gid rudghks531
-USER rudghks531
 
-WORKDIR /diablo2img2option_backend/
+RUN adduser -D @rudghks531
+USER @rudghks531
 
-COPY ./main.py /app/
-COPY ./requirements.txt /app/
+WORKDIR /@rudghks531/roa-backend:main/roa-backend/
+
+COPY ./main.py /@rudghks531/roa-backend:main/roa-backend/
+COPY ./requirements.txt /@rudghks531/roa-backend:main/roa-backend/
 
 RUN pip install -r requirements.txt
 RUN apt-get update
