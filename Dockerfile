@@ -1,14 +1,15 @@
-FROM python:latest
+FROM python:3.8-slim-buster
 
-USER @rudghks531
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
-WORKDIR /@rudghks531/roa-backend:main/roa-backend/
+COPY requirements.txt .
+RUN python -m pip install -r requirements.txt
 
-COPY ./main.py /@rudghks531/roa-backend:main/roa-backend/
-COPY ./requirements.txt /@rudghks531/roa-backend:main/roa-backend/
+WORKDIR /app
+COPY . /app
 
-RUN pip install -r requirements.txt
-RUN apt-get update
-RUN apt-get -y install libgl1-mesa-glx
+RUN useradd appuser && chown -R appuser /app
+USER appuser
 
-CMD uvicorn --host=0.0.0.0 --port 8000 main:app
+ENTRYPOINT ["uvicorn","main:app","--port","8000","--host","0.0.0.0"]
