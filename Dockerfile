@@ -1,5 +1,5 @@
 FROM python:latest
-RUN adduser --uid rudghks531
+RUN adduser --gid rudghks531
 USER rudghks531
 
 WORKDIR /diablo2img2option_backend/
