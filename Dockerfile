@@ -1,6 +1,5 @@
 FROM python:latest
 
-RUN adduser -D @rudghks531
 USER @rudghks531
 
 WORKDIR /@rudghks531/roa-backend:main/roa-backend/
