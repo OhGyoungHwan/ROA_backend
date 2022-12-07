@@ -51,8 +51,9 @@ class Rarity(str, Enum):
 app = FastAPI()
 
 origins = [
-    "http://172.27.0.1:3000",
+    "http://34.64.132.65:3000",
     "http://localhost:3000",
+    "http://www.diablo2i2o.com"
 ]
 app.add_middleware(
     CORSMiddleware,
