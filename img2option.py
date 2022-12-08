@@ -1,11 +1,8 @@
 import pytesseract
 import cv2
 import matplotlib.pyplot as plt
-import imutils
 import re
-import requests
 import numpy as np
-import imutils.perspective 
 import pandas as pd
 import optioncompiler
 
@@ -56,4 +53,7 @@ def img2text(img, type, rarity):
     text = pytesseract.image_to_string(
         processed_img, lang='kor', config="--psm 6")
     text = text.replace("7|", "기")
+
+    print(text)
+
     return text_separateoption(text, type, rarity)
