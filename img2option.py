@@ -54,6 +54,4 @@ def img2text(img, type, rarity):
         processed_img, lang='kor', config="--psm 6")
     text = text.replace("7|", "기")
 
-    print(text)
-
     return text_separateoption(text, type, rarity)

@@ -46,6 +46,10 @@ class Type(str, Enum):
 class Rarity(str, Enum):
     매직 = "매직"
     레어 = "레어"
+    크래프트블러드 = "크래프트블러드"
+    크래프트힛파워 = "크래프트힛파워"
+    크래프트캐스터 = "크래프트캐스터"
+    크래프트세이프티 = "크래프트세이프티"
 
 
 app = FastAPI()
@@ -71,7 +75,10 @@ async def onload():
 
 @app.post("/uploadimg/")
 async def create_upload_file(file: UploadFile, type: Type, rarity: Rarity):
-    images = await file.read()
-    option = img2option.img2text(images, type, rarity)
-    print(datetime.datetime.now(), option)
-    return option
+    try:
+        images = await file.read()
+        option = img2option.img2text(images, type, rarity)
+        print(datetime.datetime.now(), option, len(images))
+        return option
+    except:
+        return {}
