@@ -18,16 +18,12 @@ def imgfile_preprocessing(imgfile):
     # binary이미지 파일을 numpy array로 변환
     org_image = cv2.imdecode(image_nparray, cv2.IMREAD_COLOR)
     # numpy array를 이미지로 디코딩
-    rgb_image = cv2.cvtColor(org_image, cv2.COLOR_BGR2XYZ)
-    # 이미지를 BGR에서 RGB로 변환
-    gray_image = cv2.cvtColor(rgb_image, cv2.COLOR_RGB2GRAY)
-    # RGB이미지를 흑백이미지로 변환
+    hsv_image = cv2.cvtColor(org_image, cv2.COLOR_BGR2HSV)
+    # 이미지를 BGR에서 HSV로 변환
     binary_image = cv2.threshold(
-        gray_image, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
+            hsv_image[:,:,2], 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
     # 흑백이미지를 2진 이미지로 변환
-    removenoise_image = cv2.medianBlur(binary_image, ksize=1)
-    # 2진 이미지에서 노이즈를 제거
-    return removenoise_image
+    return binary_image
 
 
 def text_separateoption(text, type, rarity):
@@ -51,7 +47,7 @@ def img2text(img, type, rarity):
     processed_img = imgfile_preprocessing(img)
 
     text = pytesseract.image_to_string(
-        processed_img, lang='kor', config="--psm 6")
+        processed_img, lang='kor', config="--psm 4")
     text = text.replace("7|", "기")
 
     return text_separateoption(text, type, rarity)

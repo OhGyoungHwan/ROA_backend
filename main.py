@@ -58,7 +58,9 @@ origins = [
     "http://34.64.132.65:3000",
     "http://localhost:3000",
     "http://www.diablo2i2o.com",
-    "https://www.diablo2i2o.com"
+    "https://www.diablo2i2o.com",
+    "http://diablo2i2o.com",
+    "https://diablo2i2o.com"
 ]
 app.add_middleware(
     CORSMiddleware,
