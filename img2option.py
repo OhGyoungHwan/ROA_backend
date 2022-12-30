@@ -5,6 +5,9 @@ import re
 import numpy as np
 import pandas as pd
 import optioncompiler
+import logging
+
+logger = logging.getLogger("gunicorn.error")
 
 
 def imgfile_preprocessing(imgfile):
@@ -21,7 +24,7 @@ def imgfile_preprocessing(imgfile):
     hsv_image = cv2.cvtColor(org_image, cv2.COLOR_BGR2HSV)
     # 이미지를 BGR에서 HSV로 변환
     binary_image = cv2.threshold(
-            hsv_image[:,:,2], 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
+        hsv_image[:, :, 2], 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
     # 흑백이미지를 2진 이미지로 변환
     return binary_image
 
@@ -49,5 +52,6 @@ def img2text(img, type, rarity):
     text = pytesseract.image_to_string(
         processed_img, lang='kor', config="--psm 4")
     text = text.replace("7|", "기")
+    logger.info(text)
 
     return text_separateoption(text, type, rarity)
