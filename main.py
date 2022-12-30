@@ -54,7 +54,6 @@ class Rarity(str, Enum):
 
 
 app = FastAPI()
-logger = logging.getLogger("gunicorn.error")
 
 origins = [
     "http://34.64.132.65:3000",
@@ -83,7 +82,7 @@ async def create_upload_file(file: UploadFile, type: Type, rarity: Rarity):
     try:
         images = await file.read()
         option = img2option.img2text(images, type, rarity)
-        logger.info(datetime.datetime.now(), option, len(images))
+        logging.info(datetime.datetime.now(), option, len(images))
         return option
     except:
         return {}

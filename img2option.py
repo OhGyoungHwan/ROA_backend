@@ -7,8 +7,6 @@ import pandas as pd
 import optioncompiler
 import logging
 
-logger = logging.getLogger("gunicorn.error")
-
 
 def imgfile_preprocessing(imgfile):
     """
@@ -52,6 +50,6 @@ def img2text(img, type, rarity):
     text = pytesseract.image_to_string(
         processed_img, lang='kor', config="--psm 4")
     text = text.replace("7|", "기")
-    logger.info(text)
+    logging.info(text)
 
     return text_separateoption(text, type, rarity)
