@@ -79,10 +79,10 @@ async def onload():
 
 @app.post("/uploadimg/")
 async def create_upload_file(file: UploadFile, type: Type, rarity: Rarity):
-    try:
-        images = await file.read()
-        option = img2option.img2text(images, type, rarity)
-        logging.info(datetime.datetime.now(), option, len(images))
-        return option
-    except:
-        return {}
+    # try:
+    images = await file.read()
+    option = img2option.img2text(images, type, rarity)
+    logging.info(datetime.datetime.now(), option, len(images))
+    return option
+    # except:
+    #     return {}
