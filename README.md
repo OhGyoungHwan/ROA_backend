@@ -10,9 +10,13 @@ OCR을 활용해 아이템을 분석해줍니다. 최대옵션을 바로 확인�
 
 정상적인 백엔드 서버 구동을 위해 tesseract를 설치해야합니다 https://github.com/UB-Mannheim/tesseract/wiki
 
+C:\Program Files\Tesseract-OCR\tessdata 또는 설치경로에 kor.traineddata을 추가해주세요
+
 테서렉트 설치 후 환경변수 또한 등록합니다 https://playground.naragara.com/953
 
 !환경변수 등록 후 꼭 IDE를 다시 켜주세요!
+
+리눅스의 경우 도커파일을 확인해주세요
 
 프로젝트설치
 
