@@ -56,6 +56,7 @@ class Rarity(str, Enum):
 app = FastAPI()
 
 origins = [
+    "http://localhost:80"
     "http://34.64.132.65:3000",
     "http://localhost:3000",
     "http://www.diablo2i2o.com",
@@ -77,12 +78,12 @@ async def onload():
     return "load done!!!"
 
 
-@app.post("/uploadimg/")
+@app.post("/uploadimg")
 async def create_upload_file(file: UploadFile, type: Type, rarity: Rarity):
-    # try:
-    images = await file.read()
-    option = img2option.img2text(images, type, rarity)
-    logging.info(datetime.datetime.now(), option, len(images))
-    return option
-    # except:
-    #     return {}
+    try:
+        images = await file.read()
+        option = img2option.img2text(images, type, rarity)
+        logging.info(datetime.datetime.now(), option, len(images))
+        return option
+    except:
+        return {}
